@@ -122,8 +122,14 @@ function draw() {
 
     let result = checkWinner();
     if(result != null) {
+        let resultText;
+        if (result === 'tie') {
+            resultText = 'It\'s a tie!';
+        } else {
+            resultText = 'Winner: ' + result;
+        }
+        document.getElementById('result').innerText = resultText; // Update the result div
         noLoop();
-        createP(result).style('color', "black").style('font-size', '32pt');
     }
 }
 
