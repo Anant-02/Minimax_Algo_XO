@@ -15,7 +15,8 @@ function setup() {
     createCanvas(400, 400);
     w = width/3;
     h = height/3;
-    nextTurn();
+    //nextTurn();
+    bestMove();
 }
 
 function equals3(a, b, c) {
@@ -71,24 +72,24 @@ function mousePressed() {
         if(board[i][j] == '') {
             board[i][j] = human;
             currentPlayer = ai;
-            nextTurn();
+            bestMove();
         }
     }
 }
 
-function nextTurn() {
-    let available = [];
-    for(let i = 0;i < 3;i++) {
-        for(let j = 0;j < 3;j++) {
-            if(board[i][j] == '') {
-                available.push({i, j});
-            }
-        }
-    }
-    let move = random(available);
-    board[move.i][move.j] = ai;
-    currentPlayer = human;
-}
+// function nextTurn() {
+//     let available = [];
+//     for(let i = 0;i < 3;i++) {
+//         for(let j = 0;j < 3;j++) {
+//             if(board[i][j] == '') {
+//                 available.push({i, j});
+//             }
+//         }
+//     }
+//     let move = random(available);
+//     board[move.i][move.j] = ai;
+//     currentPlayer = human;
+// }
 
 function draw() {
     background(220);
@@ -125,3 +126,4 @@ function draw() {
         createP(result).style('color', "black").style('font-size', '32pt');
     }
 }
+
