@@ -9,14 +9,19 @@ let h;
 
 let ai = 'X';
 let human = 'O';
-let currentPlayer = human;
+let currentPlayer;
 
 function setup() {
     createCanvas(400, 400);
     w = width/3;
     h = height/3;
-    //nextTurn();
-    bestMove();
+    let playerChoice = prompt("Do you want to play first? (yes/no)");
+    if (playerChoice.toLowerCase() === 'yes') {
+        currentPlayer = human;
+    } else {
+        currentPlayer = ai;
+        bestMove();
+    }
 }
 
 function equals3(a, b, c) {
@@ -72,24 +77,12 @@ function mousePressed() {
         if(board[i][j] == '') {
             board[i][j] = human;
             currentPlayer = ai;
-            bestMove();
+            if (!checkWinner()) {
+                bestMove();
+            }
         }
     }
 }
-
-// function nextTurn() {
-//     let available = [];
-//     for(let i = 0;i < 3;i++) {
-//         for(let j = 0;j < 3;j++) {
-//             if(board[i][j] == '') {
-//                 available.push({i, j});
-//             }
-//         }
-//     }
-//     let move = random(available);
-//     board[move.i][move.j] = ai;
-//     currentPlayer = human;
-// }
 
 function draw() {
     background(220);
@@ -132,4 +125,3 @@ function draw() {
         noLoop();
     }
 }
-
